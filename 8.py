@@ -1,32 +1,22 @@
-import re
+def main(str):
+    str = str.replace("\n", "")
+    str = str.replace(" ", "")
+    str = str.replace("'", "")
+    spis0 = str.split(",")
+    dict = {}
+    for str in spis0[:len(spis0)-1:]:
+        fi = str.find("(")
+        se = str.find(")")
+        str2 = str[fi+1:se:]
+        str2 = str2.replace("'", "")
+        spis = str2.split('.')
 
+        fi = str.find("\"")
+        se = str.find("\".")
 
-string = 'do[ declare list(\'diatari_105\' . \'insote_564\' ) ==> "enen". ], [\
-declare list( \'edenen\' .\'dianqu\' . \'leeser_273\'. \'anan_772\' ) ==>\
-"usreon". ],[declare list(\'tibeor\' . \'bealari\' . \'esle\' ) ==>\
-"esedso". ], od'
- 
-def main(message):
-    lastIndex = 0
-    dictionary = {}
-    keys = []
-    indexes = []
-    listes = []
-    values = []
-    keys = re.findall(r'"(.*?)"', message)
-    dot = message.find('.', message.find('.') + 1)
-    for i in range(0, len(message)):
-        if(message[i] == ','):
-            indexes.append(i)
-    for i in range(0, len(indexes)):
-        if i == 0:
-            listes.append(message[:indexes[i]])
-        else:
-            listes.append(message[lastIndex:])
-        lastIndex = indexes[i]
-    for i in range(0, len(listes)):
-        values.append(re.findall(r"'([^']*)'", listes[i]))
-        dictionary[keys[i]] = values[i]
-    return dictionary
+        str2 = str[fi+1:se:]
+        dict[str2] = spis
+    return dict
 
-print(main(string))
+print(main('do [declare list(\'erce_26\'. \'ledixe\')==> "inin". ], [ declare list(\n\'diatri_659\' . \'antege\'.\'esar\' . \'maqu_883\' ) ==> "soedza_849". ],[\ndeclare list( \'zara\' . \'rier\' . \'ardixe_787\' . \'veus_49\' ) ==>\n"tige_832".],od'))
+#print(main("""do[ declare list('diatari_105' . 'insote_564' ) ==> "enen". ], [declare list( 'edenen' .'dianqu' . 'leeser_273'. 'anan_772' ) ==>"usreon". ],[declare list('tibeor' . 'bealari' . 'esle' ) ==>"esedso". ], od"""))
